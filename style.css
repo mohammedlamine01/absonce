@@ -1,5 +1,6 @@
-  * {
-      margin: 0;
+
+* {
+margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
@@ -31,6 +32,37 @@
 
     .form-group {
       margin-bottom: 24px;
+      position: relative;
+    }
+
+    .student-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+      display: none;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .student-list div {
+      padding: 12px 16px;
+      cursor: pointer;
+      border-bottom: 1px solid #f7fafc;
+      transition: background 0.2s;
+    }
+
+    .student-list div:hover {
+      background: #f7fafc;
+    }
+
+    .student-list div:last-child {
+      border-bottom: none;
     }
 
     label {
@@ -38,7 +70,7 @@
       display: block;
       margin-bottom: 8px;
       color: #4a5568;
-      font-size: 16px;
+      font-size: 14px;
     }
 
     select, input, textarea {
@@ -46,7 +78,7 @@
       padding: 12px 16px;
       border: 2px solid #e2e8f0;
       border-radius: 10px;
-      font-size: 16px;
+      font-size: 15px;
       transition: all 0.3s ease;
       background: #f7fafc;
       direction: rtl;
@@ -67,7 +99,7 @@
       padding: 14px;
       border: none;
       border-radius: 10px;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 600;
       margin-top: 10px;
       cursor: pointer;
@@ -79,8 +111,13 @@
       box-shadow: 0 10px 25px rgba(102,126,234,0.4);
     }
 
-    button:active {
-      transform: translateY(0);
+    .info-box {
+      background: linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 100%);
+      border: none;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      box-shadow: 0 2px 10px rgba(102,126,234,0.1);
     }
 
     .date-row {
@@ -89,21 +126,26 @@
       gap: 16px;
     }
 
-    /* Print Section */
+    /* Impression */
     .print-output {
+      display: none;
+    }
+
+    /* Hide footer logo on screen; shown only in print */
+    .footer-logo {
       display: none;
     }
 
     @media print {
       @page {
-        size: A3 landscape;
+        size: A4 portrait;
         margin: 20mm;
       }
 
       body {
         background: white;
         padding: 0;
-        font-size: 22px; /* ✅ Bigger font for PDF */
+        font-size: 22px;
       }
 
       .container {
@@ -112,44 +154,82 @@
 
       .print-output {
         display: block;
-        padding: 60px;
+        padding: 40px;
         max-width: 100%;
         margin: auto;
-        font-family: "Traditional Arabic", "Cairo", sans-serif;
+        font-family: "Traditional Arabic", "Arial", sans-serif;
       }
 
       .header {
         text-align: center;
-        margin-bottom: 40px;
+        margin-bottom: 30px;
+        position: relative; /* allow absolute-centering of header text */
       }
 
-      .header-text div {
-        font-size: 24px;
-        margin: 5px 0;
+      .header-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* vertically center logo and faculty on the same line */
+        margin-bottom: 20px;
+      }
+
+      .logo {
+        width: 80px;
+        height: 80px;
+      }
+
+      /* Header logo (first page) styling */
+      .header-logo {
+        width: 80px;
+        height: auto;
+        display: block;
+      }
+
+      /* center the header textual block in the page regardless of side elements */
+      .header-text {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60%;
+        text-align: center;
+        line-height: 1.8;
+        font-size: 18px;
+      }
+
+      .faculty {
+        text-align: right;
+        font-size: 20px;
+        margin-bottom: 0;
+        font-weight: 600;
+        display: inline-block;
+        vertical-align: middle;
       }
 
       .title {
         text-align: center;
-        font-size: 36px;
+        font-size: 28px;
         font-weight: bold;
         text-decoration: underline;
         margin: 40px 0;
       }
 
       .content {
-        font-size: 28px;
-        line-height: 2.5;
+        font-size: 22px;
+        line-height: 1.8;
       }
 
       .info-line {
-        margin: 20px 0;
+        margin: 10px 0;
+        padding-bottom: 5px;
         display: flex;
         align-items: center;
+        justify-content: space-between;
       }
 
       .info-line .label {
         margin-left: 10px;
         font-weight: bold;
+        font-size: 22px;
       }
 
       .info-line .value {
@@ -157,29 +237,49 @@
         text-align: center;
         color: #000;
         font-weight: 600;
+        font-size: 22px;
+      }
+
+      .note {
+        margin-top: 40px;
+        font-size: 20px;
+        line-height: 1.8;
       }
 
       .signature {
-        margin-top: 100px;
-        display: flex;
-        justify-content: space-between;
-        font-size: 26px;
+        margin-top: 70px;
+        text-align: left;
+        font-size: 22px;
       }
 
-      .signature div {
-        text-align: center;
-        width: 45%;
+      .signature-date {
+        margin-bottom: 15px;
       }
-    }
 
-    @media (max-width: 640px) {
-      .container {
-        padding: 30px 20px;
+      .signature-title {
+        font-weight: bold;
       }
-      h2 {
-        font-size: 24px;
+
+      /* Footer logo positioning for printed PDF (kept but hidden below) */
+      .footer-logo {
+        display: block;
+        position: fixed;
+        left: 20mm;
+        bottom: 10mm;
+        width: 120px;
+        height: auto;
+        z-index: 9999;
       }
-      .date-row {
-        grid-template-columns: 1fr;
+
+      /* Note: faculty is inside the header-row to display on the same line as the logo */
+
+      /* Show header logo in document flow (only once at the top) and keep footer hidden */
+      /* header-logo is part of the header block (not fixed) so it will appear on the first page only */
+      .header-logo {
+        display: block !important;
+      }
+
+      .footer-logo {
+        display: none !important;
       }
     }

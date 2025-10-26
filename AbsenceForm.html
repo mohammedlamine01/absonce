@@ -3,254 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ترخيص بالغياب</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: "Cairo", sans-serif;
-      background: #ffffff;
-      min-height: 100vh;
-      padding: 40px 20px;
-      direction: rtl;
-    }
-
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: #fff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 35px;
-      color: #2d3748;
-      font-size: 28px;
-      font-weight: 700;
-    }
-
-    .form-group {
-      margin-bottom: 24px;
-    }
-
-    label {
-      font-weight: 600;
-      display: block;
-      margin-bottom: 8px;
-      color: #4a5568;
-      font-size: 14px;
-    }
-
-    select, input, textarea {
-      width: 100%;
-      padding: 12px 16px;
-      border: 2px solid #e2e8f0;
-      border-radius: 10px;
-      font-size: 15px;
-      transition: all 0.3s ease;
-      background: #f7fafc;
-    }
-
-    select:focus, input:focus, textarea:focus {
-      outline: none;
-      border-color: #667eea;
-      background: #fff;
-      box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
-    }
-
-    button {
-      width: 100%;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      font-size: 16px;
-      font-weight: 600;
-      margin-top: 10px;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 25px rgba(102,126,234,0.4);
-    }
-
-    button:active {
-      transform: translateY(0);
-    }
-
-    .info-box {
-      background: linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 100%);
-      border: none;
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
-      box-shadow: 0 2px 10px rgba(102,126,234,0.1);
-    }
-
-    .info-box p {
-      margin-bottom: 10px;
-      color: #4a5568;
-      font-size: 15px;
-    }
-
-    .info-box p:last-child {
-      margin-bottom: 0;
-    }
-
-    .info-box strong {
-      color: #2d3748;
-      font-weight: 600;
-    }
-
-    .date-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 16px;
-    }
-
-    /* Print Styles */
-    .print-output {
-      display: none;
-    }
-
-    @media print {
-      body {
-        background: white;
-        padding: 0;
-      }
+  <title>تبرير بالغياب</title>
+  <link rel="stylesheet" href="style.css">
+    
       
-      .container {
-        display: none;
-      }
 
-      .print-output {
-        display: block;
-        padding: 40px;
-        max-width: 210mm;
-        margin: auto;
-        font-family: "Traditional Arabic", "Arial", sans-serif;
-      }
-
-      .header {
-        text-align: center;
-        margin-bottom: 30px;
-      }
-
-      .header-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        margin-bottom: 20px;
-      }
-
-      .logo {
-        width: 80px;
-        height: 80px;
-      }
-
-      .header-text {
-        flex: 1;
-        text-align: center;
-        line-height: 1.8;
-      }
-
-      .header-text div {
-        font-size: 14px;
-        margin: 3px 0;
-      }
-
-      .faculty {
-        text-align: right;
-        font-size: 14px;
-        margin-bottom: 40px;
-      }
-
-      .title {
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        text-decoration: underline;
-        margin: 40px 0;
-      }
-
-      .content {
-        font-size: 15px;
-        line-height: 2.5;
-      }
-
-      .info-line {
-        margin: 15px 0;
-        border-bottom: 1px dotted #000;
-        padding-bottom: 5px;
-        display: flex;
-        align-items: center;
-      }
-
-      .info-line .label {
-        margin-left: 10px;
-      }
-
-      .info-line .value {
-        flex: 1;
-        text-align: center;
-        color: #1a202c;
-        font-weight: 600;
-      }
-
-      .note {
-        margin-top: 30px;
-        font-size: 13px;
-      }
-
-      .signature {
-        margin-top: 60px;
-        text-align: left;
-      }
-
-      .signature-date {
-        margin-bottom: 10px;
-      }
-
-      .signature-title {
-        font-weight: bold;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .container {
-        padding: 30px 20px;
-      }
-      
-      h2 {
-        font-size: 24px;
-      }
-
-      .date-row {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
 </head>
 <body>
 
   <div class="container">
-    <h2>طلب ترخيص بالغياب</h2>
+    <h2>تبرير الغياب</h2>
 
     <div class="form-group">
       <label for="student">اختر الطالب</label>
-      <select id="student">
-        <option value="">-- اختر الطالب --</option>
-      </select>
+      <input type="text" id="studentSearch" dir="rtl" placeholder="ابحث عن الطالب..." />
+      <div id="studentList" class="student-list"></div>
     </div>
 
     <div id="studentInfo" class="info-box" style="display:none;">
@@ -261,7 +28,16 @@
 
     <div class="form-group">
       <label for="reason">سبب الغياب</label>
-      <input type="text" id="reason" dir="rtl" placeholder="مثلاً: أسباب صحية" />
+      <select id="reason" dir="rtl">
+        <option value="">-- اختر السبب --</option>
+        <option value="مريض">مريض</option>
+        <option value="حضور مقابلة وزارية">حضور مقابلة وزارية</option>
+        <option value="حضور ماتمر وزاري">حضور ماتمر وزاري</option>
+        <option value="مشاركة في المسابقات الوطنية">مشاركة في المسابقات الوطنية</option>
+        <option value="امر بمهمة من الجتمعة">امر بمهمة من الجتمعة</option>
+        <option value="أخرى">أخرى</option>
+      </select>
+      <input type="text" id="otherReason" dir="rtl" placeholder="حدد السبب" style="display:none;" />
     </div>
 
     <div class="date-row">
@@ -270,7 +46,7 @@
         <input type="date" id="fromDate" />
       </div>
 
-      <div class="form-group">
+      <div class="form-group">  
         <label for="toDate">إلى غاية</label>
         <input type="date" id="toDate" />
       </div>
@@ -284,30 +60,21 @@
     <div class="header">
       <div class="header-row">
         <div class="logo">
-          <svg width="80" height="80" viewBox="0 0 80 80">
-            <circle cx="40" cy="40" r="35" fill="none" stroke="#333" stroke-width="2"/>
-            <rect x="25" y="30" width="30" height="25" fill="#666"/>
-            <path d="M 25 30 L 40 20 L 55 30" fill="#888"/>
-            <text x="40" y="70" text-anchor="middle" font-size="10" fill="#333">جامعة</text>
-          </svg>
+          <!-- Use the provided footer-logo.png also as the header logo on the first page -->
+          <img src="footer-logo.png" alt="logo" class="header-logo" />
         </div>
         <div class="header-text">
           <div><strong>الجمهورية الجزائرية الديمقراطية الشعبية</strong></div>
           <div><strong>وزارة التعليم العالي و البحث العلمي</strong></div>
           <div><strong>جامعـــة برج بوعريريــــج</strong></div>
         </div>
-        <div style="width: 80px;"></div>
+        <div class="faculty">كلية الرايضيات و اإلعالم اآلي</div>
       </div>
-      <div class="faculty">كلية الرياضيات و الإعلام الآلي</div>
     </div>
 
-    <div class="title">تـــــريــــــر بالغيــــــــاب</div>
+    <div class="title">تبرير بالغياب</div>
 
     <div class="content">
-      <div style="text-align: right; margin-bottom: 20px;">
-        الطالب(ة)
-      </div>
-
       <div class="info-line">
         <span class="label">الاسم :</span>
         <span class="value" id="printName"></span>
@@ -316,114 +83,43 @@
       </div>
 
       <div class="info-line">
-        <span class="label">المسجل(ة) بالسنة</span>
+        <span class="label">السنة :</span>
         <span class="value" id="printYear"></span>
-        <span class="label">التخصص</span>
+        <span class="label">التخصص :</span>
         <span class="value" id="printSpec"></span>
       </div>
 
-      <div class="info-line">
-        <span class="label">قدم(ة) مبرر غياب يتمثل في :</span>
-        <span class="value" id="printReason"></span>
+      <div class="info-line" style="display: block;">
+        <span class="label" style="display: inline;">سبب الغياب :</span>
+        <span class="value" id="printReason" style="display: inline; margin-right: 10px;"></span>
       </div>
 
       <div class="info-line">
-        <span class="label">ذلك من :</span>
+        <span class="label">من :</span>
         <span class="value" id="printFrom"></span>
-        <span class="label">إلى غاية</span>
+        <span class="label">إلى :</span>
         <span class="value" id="printTo"></span>
       </div>
 
-      <div style="margin-top: 20px;">
-        لمدة : <span id="printDuration"></span>
+      <div class="info-line">
+        <span class="label">المدة :</span>
+        <span class="value" id="printDuration"></span>
       </div>
 
       <div class="note">
-        ملاحظة: يقدم الطالب(ة) نسخة من هذه الرخصة إلى جميع الأساتذة المعنيين .
+        ملاحظة: يقدم الطالب(ة) نسخة من هذه الرخصة إلى جميع الأساتذة المعنيين.
       </div>
 
       <div class="signature">
         <div class="signature-date">برج بوعريريج <span id="printDate"></span></div>
         <div class="signature-title">رئيس القسم</div>
       </div>
+      <!-- Footer logo for printed PDF (aligned to the right) -->
+      <img src="footer-logo.png" alt="logo" class="footer-logo" />
     </div>
   </div>
 
-  <script>
-    const students = [
-      { id: 1, name: "محمد أمين", lastName: "قواسمية", year: "سنة ثالثة", specialization: "إعلام آلي" },
-      { id: 2, name: "سارة", lastName: "بن عيسى", year: "سنة أولى", specialization: "رياضيات" },
-      { id: 3, name: "عبد الله", lastName: "مراد", year: "سنة ثانية", specialization: "إعلام آلي" },
-    ];
-
-    const studentSelect = document.getElementById("student");
-    const infoBox = document.getElementById("studentInfo");
-    const nameSpan = document.getElementById("name");
-    const yearSpan = document.getElementById("year");
-    const specSpan = document.getElementById("specialization");
-
-    students.forEach(s => {
-      const opt = document.createElement("option");
-      opt.value = s.id;
-      opt.textContent = `${s.name} ${s.lastName}`;
-      studentSelect.appendChild(opt);
-    });
-
-    studentSelect.addEventListener("change", (e) => {
-      const selected = students.find(s => s.id == e.target.value);
-      if (selected) {
-        infoBox.style.display = "block";
-        nameSpan.textContent = `${selected.name} ${selected.lastName}`;
-        yearSpan.textContent = selected.year;
-        specSpan.textContent = selected.specialization;
-      } else {
-        infoBox.style.display = "none";
-      }
-    });
-
-    function calculateDuration(from, to) {
-      const fromDate = new Date(from);
-      const toDate = new Date(to);
-      const diffTime = Math.abs(toDate - fromDate);
-      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
-      return `${diffDays} يوم`;
-    }
-
-    function formatDate(dateStr) {
-      const date = new Date(dateStr);
-      return date.toLocaleDateString('ar-DZ');
-    }
-
-    document.getElementById("printBtn").addEventListener("click", () => {
-      const studentId = studentSelect.value;
-      const reason = document.getElementById("reason").value.trim();
-      const from = document.getElementById("fromDate").value;
-      const to = document.getElementById("toDate").value;
-
-      if (!studentId || !reason || !from || !to) {
-        alert("يرجى ملء جميع الحقول قبل الطباعة");
-        return;
-      }
-
-      const selected = students.find(s => s.id == studentId);
-      
-      document.getElementById("printName").textContent = selected.name;
-      document.getElementById("printLastName").textContent = selected.lastName;
-      document.getElementById("printYear").textContent = selected.year;
-      document.getElementById("printSpec").textContent = selected.specialization;
-      document.getElementById("printReason").textContent = reason;
-      document.getElementById("printFrom").textContent = formatDate(from);
-      document.getElementById("printTo").textContent = formatDate(to);
-      document.getElementById("printDuration").textContent = calculateDuration(from, to);
-      
-      const today = new Date();
-      document.getElementById("printDate").textContent = today.toLocaleDateString('ar-DZ');
-
-      setTimeout(() => {
-        window.print();
-      }, 100);
-    });
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>

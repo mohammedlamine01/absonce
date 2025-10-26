@@ -1,31 +1,86 @@
-const students = [
-      { id: 1, name: "محمد أمين", lastName: "قواسمية", year: "سنة ثالثة", specialization: "إعلام آلي" },
-      { id: 2, name: "سارة", lastName: "بن عيسى", year: "سنة أولى", specialization: "رياضيات" },
-      { id: 3, name: "عبد الله", lastName: "مراد", year: "سنة ثانية", specialization: "إعلام آلي" },
-    ];
+    let students = [];
 
-    const studentSelect = document.getElementById("student");
+    async function loadStudents() {
+      try {
+        const response = await fetch('students_dataset.csv');
+        const text = await response.text();
+        const lines = text.split('\n');
+        const headers = lines[0].split(',');
+        for (let i = 1; i < lines.length; i++) {
+          const values = lines[i].split(',');
+          if (values.length === 5) {
+            students.push({
+              id: parseInt(values[0]),
+              name: values[1],
+              lastName: values[2],
+              specialization: values[3],
+              year: values[4]
+            });
+          }
+        }
+      } catch (error) {
+        console.error('Error loading students:', error);
+      }
+    }
+
+    loadStudents();
+
+    let selectedStudentId = null;
+    const studentSearch = document.getElementById("studentSearch");
+    const studentList = document.getElementById("studentList");
     const infoBox = document.getElementById("studentInfo");
     const nameSpan = document.getElementById("name");
     const yearSpan = document.getElementById("year");
     const specSpan = document.getElementById("specialization");
 
-    students.forEach(s => {
-      const opt = document.createElement("option");
-      opt.value = s.id;
-      opt.textContent = `${s.name} ${s.lastName}`;
-      studentSelect.appendChild(opt);
-    });
-
-    studentSelect.addEventListener("change", (e) => {
-      const selected = students.find(s => s.id == e.target.value);
-      if (selected) {
+    function showStudentInfo(student) {
+      if (student) {
         infoBox.style.display = "block";
-        nameSpan.textContent = `${selected.name} ${selected.lastName}`;
-        yearSpan.textContent = selected.year;
-        specSpan.textContent = selected.specialization;
+        nameSpan.textContent = `${student.name} ${student.lastName}`;
+        yearSpan.textContent = student.year;
+        specSpan.textContent = student.specialization;
       } else {
         infoBox.style.display = "none";
+      }
+    }
+
+    studentSearch.addEventListener("input", (e) => {
+      const query = e.target.value.toLowerCase().trim();
+      studentList.innerHTML = '';
+      if (query === '') {
+        studentList.style.display = 'none';
+        selectedStudentId = null;
+        showStudentInfo(null);
+        return;
+      }
+      const filtered = students.filter(s => `${s.name} ${s.lastName}`.toLowerCase().includes(query));
+      if (filtered.length > 0) {
+        filtered.forEach(s => {
+          const div = document.createElement("div");
+          div.textContent = `${s.name} ${s.lastName}`;
+          div.addEventListener("click", () => {
+            selectedStudentId = s.id;
+            studentSearch.value = `${s.name} ${s.lastName}`;
+            studentList.style.display = 'none';
+            showStudentInfo(students.find(s => s.id === selectedStudentId));
+          });
+          studentList.appendChild(div);
+        });
+        studentList.style.display = 'block';
+      } else {
+        studentList.style.display = 'none';
+      }
+    });
+
+    const reasonSelect = document.getElementById("reason");
+    const otherReasonInput = document.getElementById("otherReason");
+
+    reasonSelect.addEventListener("change", (e) => {
+      if (e.target.value === "أخرى") {
+        otherReasonInput.style.display = "block";
+      } else {
+        otherReasonInput.style.display = "none";
+        otherReasonInput.value = "";
       }
     });
 
@@ -43,8 +98,11 @@ const students = [
     }
 
     document.getElementById("printBtn").addEventListener("click", () => {
-      const studentId = studentSelect.value;
-      const reason = document.getElementById("reason").value.trim();
+      const studentId = selectedStudentId;
+      let reason = document.getElementById("reason").value.trim();
+      if (reason === "أخرى") {
+        reason = otherReasonInput.value.trim();
+      }
       const from = document.getElementById("fromDate").value;
       const to = document.getElementById("toDate").value;
 
