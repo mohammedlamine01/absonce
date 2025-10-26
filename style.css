@@ -1,0 +1,185 @@
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Cairo", sans-serif;
+      background: #ffffff;
+      min-height: 100vh;
+      padding: 40px 20px;
+      direction: rtl;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 35px;
+      color: #2d3748;
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+    }
+
+    label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 8px;
+      color: #4a5568;
+      font-size: 16px;
+    }
+
+    select, input, textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: #f7fafc;
+      direction: rtl;
+      text-align: right;
+    }
+
+    select:focus, input:focus, textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(102,126,234,0.1);
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 10px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(102,126,234,0.4);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .date-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    /* Print Section */
+    .print-output {
+      display: none;
+    }
+
+    @media print {
+      @page {
+        size: A3 landscape;
+        margin: 20mm;
+      }
+
+      body {
+        background: white;
+        padding: 0;
+        font-size: 22px; /* ✅ Bigger font for PDF */
+      }
+
+      .container {
+        display: none;
+      }
+
+      .print-output {
+        display: block;
+        padding: 60px;
+        max-width: 100%;
+        margin: auto;
+        font-family: "Traditional Arabic", "Cairo", sans-serif;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .header-text div {
+        font-size: 24px;
+        margin: 5px 0;
+      }
+
+      .title {
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin: 40px 0;
+      }
+
+      .content {
+        font-size: 28px;
+        line-height: 2.5;
+      }
+
+      .info-line {
+        margin: 20px 0;
+        display: flex;
+        align-items: center;
+      }
+
+      .info-line .label {
+        margin-left: 10px;
+        font-weight: bold;
+      }
+
+      .info-line .value {
+        flex: 1;
+        text-align: center;
+        color: #000;
+        font-weight: 600;
+      }
+
+      .signature {
+        margin-top: 100px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 26px;
+      }
+
+      .signature div {
+        text-align: center;
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 30px 20px;
+      }
+      h2 {
+        font-size: 24px;
+      }
+      .date-row {
+        grid-template-columns: 1fr;
+      }
+    }
